@@ -1,4 +1,4 @@
-package org.example;
+package fcul.mei;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -6,8 +6,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class ClientHandler implements Runnable {
-    private Socket clientSocket;
-    private Scanner scanner;
+    private final Socket clientSocket;
     private PrintWriter writer;
 
     public ClientHandler(Socket socket) {
@@ -17,7 +16,7 @@ public class ClientHandler implements Runnable {
     @Override
     public void run() {
         try {
-            scanner = new Scanner(clientSocket.getInputStream());
+            Scanner scanner = new Scanner(clientSocket.getInputStream());
             writer = new PrintWriter(clientSocket.getOutputStream(), true);
 
             // Adiciona o PrintWriter do cliente à lista

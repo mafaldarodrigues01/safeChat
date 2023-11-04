@@ -1,4 +1,4 @@
-package org.example;
+package fcul.mei;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;

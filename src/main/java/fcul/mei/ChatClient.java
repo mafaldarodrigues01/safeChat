@@ -1,4 +1,4 @@
-package org.example;
+package fcul.mei;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -13,7 +13,6 @@ public class ChatClient {
             chatClient.startClient("Mafalda");
         }
     }
-
 
     public void startClient(String username) {
         try {
@@ -39,7 +38,7 @@ public class ChatClient {
             Thread sendThread = new Thread(() -> {
                 while (true) {
                     String clientMessage = consoleScanner.nextLine();
-                    writer.println(username+": "+clientMessage);
+                    writer.println(username + ": " + clientMessage);
                     // Adicionamos esta linha para esperar que o usuário pressione "Enter"
                     if (clientMessage.equals("")) {
                         System.out.println("Pressione Enter para enviar a mensagem.");
