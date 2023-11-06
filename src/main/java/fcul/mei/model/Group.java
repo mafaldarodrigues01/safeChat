@@ -1,7 +1,9 @@
 package fcul.mei.model;
 
 import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
 
+import java.util.Iterator;
 import java.util.Set;
 
 
@@ -16,15 +18,36 @@ public class Group {
     private int gid;
 
     @Column(name = "group_name")
-    private String groupName;
+    String groupName;
 
+    @NonNull
     @ManyToMany(mappedBy = "")
     @JoinTable(name="group_user",
             joinColumns=@JoinColumn(name="username"),
             inverseJoinColumns=@JoinColumn(name="gid"))
-    private Set<User> users;
+    Set<User> users;
 
     @OneToMany(mappedBy = "group")
-    private Set<Message> messages;
+    Set<Message> messages;
 
+    //creates a new window chat with no inicial messages
+    public Group(Set<User> users, String groupName){
+        this.users = users;
+        if(groupName != null)
+            this.groupName = groupName;
+        else
+            this.groupName = groupNameGenerator(users);
+    }
+
+    private static String groupNameGenerator(Set<User> users){
+        Iterator<User> iterator = users.iterator();
+        StringBuilder groupName = new StringBuilder(iterator.next().username);
+        if(users.size() == 1){
+            return groupName.toString();
+        }
+        while (iterator.hasNext()){
+            groupName.append(", ").append(iterator.next().username);
+        }
+        return groupName.toString();
+    }
 }

@@ -11,20 +11,21 @@ public class User {
 
     @Id
     @Column(name = "username")
-    private String username;
+     String username;
 
     @Column(name = "password")
-    private String password;
+     String password;
 
     @ManyToMany(mappedBy="users")
-    private Set<Group> groups;
+     Set<Group> groups;
 
     @OneToMany(mappedBy = "users")
-    private Set<Message> messages;
+    Set<Message> messages;
 
-    public User(String username, String password, Set<Group> groups){
+    public User(String username, String password){
         this.username = username;
         this.password = password;
     }
+
 
 }
