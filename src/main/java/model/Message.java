@@ -1,4 +1,4 @@
-package fcul.mei.model;
+package model;
 
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;

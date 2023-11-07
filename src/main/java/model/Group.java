@@ -1,4 +1,4 @@
-package fcul.mei.model;
+package model;
 
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
@@ -30,7 +30,7 @@ public class Group {
     @OneToMany(mappedBy = "group")
     Set<Message> messages;
 
-    //creates a new window chat with no inicial messages
+    //creates a new window chat with no initial messages
     public Group(Set<User> users, String groupName){
         this.users = users;
         if(groupName != null)
@@ -39,7 +39,7 @@ public class Group {
             this.groupName = groupNameGenerator(users);
     }
 
-    private static String groupNameGenerator(Set<User> users){
+    private static String groupNameGenerator(@org.jetbrains.annotations.NotNull Set<User> users){
         Iterator<User> iterator = users.iterator();
         StringBuilder groupName = new StringBuilder(iterator.next().username);
         if(users.size() == 1){

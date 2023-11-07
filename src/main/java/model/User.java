@@ -1,12 +1,11 @@
-package fcul.mei.model;
+package model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.Set;
 
+@Entity(name = "User")
+@Table(name = "user")
 public class User {
 
     @Id
@@ -26,6 +25,5 @@ public class User {
         this.username = username;
         this.password = password;
     }
-
 
 }

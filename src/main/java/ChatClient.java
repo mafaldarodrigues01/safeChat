@@ -1,21 +1,27 @@
-package fcul.mei;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 import java.io.PrintWriter;
 
+@Component
 public class ChatClient {
 
-    public static class ChatClientMain {
-        public static void main(String[] args) {
-            ChatClient chatClient = new ChatClient();
-            chatClient.startClient("Mafalda");
-        }
+
+    public static void main(String[] args) {
+        ChatClient chatClient = new ChatClient();
+        System.out.println("Whats your name?");
+        Scanner consoleScanner = new Scanner(System.in);
+        chatClient.startClient(consoleScanner.nextLine(), "abc");
     }
 
-    public void startClient(String username) {
+
+    public void startClient(String username, String password) {
         try {
+
+         //   userDao.save(new User(username, password));
+
             Socket socket = new Socket("localhost", 5000);
 
             Scanner scanner = new Scanner(socket.getInputStream());
